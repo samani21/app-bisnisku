@@ -1,14 +1,16 @@
 import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
-    position: relative;
-    height: 30px;
-    top: 0px;
+    position: fixed;
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 10px;
-    margin-top: 10px;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 10px 2px;
+    border-radius: 12px;
+    width: 100%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 3;
 `;
 
 export const ContentHeader = styled.div`
@@ -16,9 +18,8 @@ export const ContentHeader = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    border: 2px solid ${(props) => props.color};
     border-radius: 30px;
-    padding: 10px 20px 10px 20px;
+    height: 25px;
 `;
 
 export const MenuContainer = styled.div`
@@ -45,6 +46,7 @@ export const TextMenu = styled.p`
     font-family: "Roboto", sans-serif;
     font-size: 13px;
     font-weight: 600;
+    color: ${(props) => props.color};
 `;
 
 export const MeuSide = styled.img`
@@ -55,17 +57,19 @@ export const HeaderRight = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    margin-right: 10px;
 `;
 
 export const Meja = styled.div`
-    font-family: "Roboto", sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    background: ${(props) => props.color};
-    color: white;
+    background-color: ${(props) => props.color};
+    color: #ffffff;
+    padding: 8px 16px;
     border-radius: 20px;
-    padding: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
 `;
 
 export const CartProfilContainer = styled.div`
@@ -75,11 +79,9 @@ export const CartProfilContainer = styled.div`
     gap: 20px;
 `;
 
-export const Icon = styled.img`
-    width: 25px;
-    cursor: pointer;
-    &.active{
-        background: ${(props) => props.color};
-        border-radius: 20px;
-    }
+export const Icon = styled.svg`
+  width: 30px;
+  height: 30px;
+  fill: ${(props) => props.color || "black"};
+  cursor: pointer;
 `;
