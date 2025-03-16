@@ -1,6 +1,6 @@
 import React from 'react'
-import { CategorieContainer, Category, Content, Header, Icon, ListCategorie, SubTitle, Title, TitleCategorie } from '../../../../Components/Theme/theme1/Categories'
-import { IconCircleArrow } from '../../../../assets'
+import { CategorieContainer, Category, Content, Header, Icon, ListCategorie, SubTitle, Title } from '../../../../Components/Theme/theme1/Categories'
+
 
 const categories = [
     {

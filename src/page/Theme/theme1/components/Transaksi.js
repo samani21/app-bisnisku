@@ -60,7 +60,7 @@ const menus = [
 ]
 
 const Transaksi = (props) => {
-    const { dataThme, handelPayment } = props;
+    const { handelPayment } = props;
     const [menuActive, setMenuActive] = useState("Riwayat")
     const formatRupiah = (number) => {
         return new Intl.NumberFormat("id-ID", {
@@ -71,7 +71,6 @@ const Transaksi = (props) => {
     };
 
     function FormatTanggal({ date }) {
-        const dateString = '2025-03-12';
         const dateObj = new Date(date);
 
         const options = { day: '2-digit', month: 'long', year: 'numeric' };

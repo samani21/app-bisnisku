@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { AmountContainer, ButtonCLose, CodeTransaksi, Content, Copy, Detail, DetailContainr, IconCheck, IconCheckContainer, Item, ListItem, ListItemContainer, PayementContainer, Qty, Title, Total, TotalContainer, TotalPrice, TypographCenter, TypographLeft, TypographRight } from '../../../../Components/Theme/theme1/Payment'
 import { IconCheckGreen, IconCopy } from '../../../../assets'
 
 const Payment = (props) => {
     const { payment, setOpenPayment } = props;
-    const [copy, setCopy] = useState()
     const formatRupiah = (number) => {
         return new Intl.NumberFormat("id-ID", {
             style: "currency",
@@ -14,7 +13,6 @@ const Payment = (props) => {
     };
 
     function FormatTanggal({ date }) {
-        const dateString = '2025-03-12';
         const dateObj = new Date(date);
 
         const options = { day: '2-digit', month: 'long', year: 'numeric' };
