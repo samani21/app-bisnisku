@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Promo from "./components/Promo";
 import Navbar from "./components/Navbar";
 import Product from "./components/Product";
+import Transaksi from "./components/Transaksi";
 
 const Container = styled.div`
     font-family: "Poppins", sans-serif;
@@ -105,16 +106,22 @@ const Theme1 = () => {
     return (
         <>
             <Container ref={containerRef} color={dataThme?.color}>
-                <Header dataThme={dataThme} />
-                <Section id="promo-section">
-                    <Promo dataThme={dataThme} />
-                </Section>
-                <Section id="categories">
-                    <Categories dataThme={dataThme} />
-                </Section>
-                <Section id="product">
-                    <Product />
-                </Section>
+                {
+                    menuActive === 4 ?
+                        <Transaksi dataThme={dataThme} /> :
+                        <>
+                            <Header dataThme={dataThme} />
+                            <Section id="promo-section">
+                                <Promo dataThme={dataThme} />
+                            </Section>
+                            <Section id="categories">
+                                <Categories dataThme={dataThme} />
+                            </Section>
+                            <Section id="product">
+                                <Product />
+                            </Section>
+                        </>
+                }
             </Container>
             <Navbar dataThme={dataThme} menuActive={menuActive} setMenuActive={setMenuActive} />
         </>
