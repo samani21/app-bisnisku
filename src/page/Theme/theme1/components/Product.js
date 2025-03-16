@@ -37,7 +37,8 @@ const menuItems = [
     // { id: 25, name: "Jus Detox Hijau", price: 15000, category: "Makanan Sehat", image: "https://images.pexels.com/photos/5908082/pexels-photo-5908082.jpeg" }
 ];
 
-const Product = () => {
+const Product = (props) => {
+    const { setModalProduct } = props
     const formatRupiah = (number) => {
         return new Intl.NumberFormat("id-ID", {
             style: "currency",
@@ -50,7 +51,7 @@ const Product = () => {
             <ListProduct>
                 {
                     menuItems?.map((m, i) => (
-                        <Item key={i} image={m?.image}>
+                        <Item key={i} image={m?.image} onClick={() => setModalProduct(true)}>
                             <Ovelay />
                             <InfoItem>
                                 <NameItem>

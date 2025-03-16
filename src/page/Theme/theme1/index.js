@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Product from "./components/Product";
 import Transaksi from "./components/Transaksi";
 import Payment from "./components/Payment";
+import ModalProduct from "./components/ModalProduct";
 
 const Container = styled.div`
     font-family: "Poppins", sans-serif;
@@ -31,26 +32,27 @@ const dataThme = {
     icon_color_active: "#ffffff",
 };
 
+const debounce = (func, delay) => {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => func(...args), delay);
+    };
+};
+
 const Theme1 = () => {
     const [menuActive, setMenuActive] = useState(1);
     const containerRef = useRef(null);
     const isAutoScrolling = useRef(false);
     const [payment, setPayment] = useState();
     const [openPayment, setOpenPayment] = useState(false);
-
+    const [modalProduct, setModalProduct] = useState(false);
     const handelPayment = (item) => {
         setOpenPayment(true)
         setPayment(item)
     }
 
-    const debounce = (func, delay) => {
-        let timer;
-        return (...args) => {
-            clearTimeout(timer);
-            timer = setTimeout(() => func(...args), delay);
-        };
-    };
-
+   
     const handleScroll = useCallback(
         debounce(() => {
             if (!containerRef.current || isAutoScrolling.current) return;
@@ -120,6 +122,7 @@ const Theme1 = () => {
                             {
                                 menuActive === 4 ?
                                     <Transaksi dataThme={dataThme} handelPayment={handelPayment} /> :
+
                                     <>
                                         <Header dataThme={dataThme} />
                                         <Section id="promo-section">
@@ -129,12 +132,15 @@ const Theme1 = () => {
                                             <Categories dataThme={dataThme} />
                                         </Section>
                                         <Section id="product">
-                                            <Product />
+                                            <Product setModalProduct={setModalProduct} />
                                         </Section>
+                                        {
+                                            modalProduct && <ModalProduct />
+                                        }
                                     </>
                             }
                         </Container>
-                        <Navbar dataThme={dataThme} menuActive={menuActive} setMenuActive={setMenuActive} />
+                        <Navbar dataThme={dataThme} menuActive={menuActive} setMenuActive={setMenuActive} setModalProduct={setModalProduct} />
                     </>
             }
         </>
