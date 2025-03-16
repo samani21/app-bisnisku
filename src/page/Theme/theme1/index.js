@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useState, useRef, useCallback, useMemo } from "react";
 import Header from "./components/Header";
 import Categories from "./components/Categories";
 import styled from "styled-components";
@@ -9,6 +9,7 @@ import Transaksi from "./components/Transaksi";
 import Payment from "./components/Payment";
 import ModalProduct from "./components/ModalProduct";
 
+// Styling
 const Container = styled.div`
     font-family: "Poppins", sans-serif;
     background-color: #f8f8f8;
@@ -16,7 +17,7 @@ const Container = styled.div`
     margin: 0;
     padding: 0;
     height: 95vh;
-    overflow-y: auto; /* Memastikan kontainer bisa discroll */
+    overflow-y: auto;
     scroll-behavior: smooth;
 `;
 
@@ -24,6 +25,7 @@ const Section = styled.div`
     min-height: 60vh;
 `;
 
+// Theme color data
 const dataThme = {
     color: "#2C3E50",
     color_menu_active: "#51769b",
@@ -32,6 +34,7 @@ const dataThme = {
     icon_color_active: "#ffffff",
 };
 
+// Debounce helper
 const debounce = (func, delay) => {
     let timer;
     return (...args) => {
@@ -44,54 +47,58 @@ const Theme1 = () => {
     const [menuActive, setMenuActive] = useState(1);
     const containerRef = useRef(null);
     const isAutoScrolling = useRef(false);
-    const [payment, setPayment] = useState();
+    const [payment, setPayment] = useState(null);
     const [openPayment, setOpenPayment] = useState(false);
     const [modalProduct, setModalProduct] = useState(false);
+
+    // Handle Payment
     const handelPayment = (item) => {
-        setOpenPayment(true)
-        setPayment(item)
-    }
+        setOpenPayment(true);
+        setPayment(item);
+    };
 
-   
-    const handleScroll = useCallback(
-        debounce(() => {
-            if (!containerRef.current || isAutoScrolling.current) return;
+    // Scroll Logic
+    const handleScrollHandler = useCallback(() => {
+        if (!containerRef.current || isAutoScrolling.current) return;
 
-            const scrollPosition = containerRef.current.scrollTop;
-            const sections = [
-                { id: "promo-section", index: 1 },
-                { id: "categories", index: 2 },
-                { id: "product", index: 3 }
-            ];
+        const scrollPosition = containerRef.current.scrollTop;
+        const sections = [
+            { id: "promo-section", index: 1 },
+            { id: "categories", index: 2 },
+            { id: "product", index: 3 },
+        ];
 
-            for (const section of sections) {
-                const element = document.getElementById(section.id);
-                if (element) {
-                    const offsetTop = element.offsetTop;
-                    const offsetHeight = element.offsetHeight;
+        for (const section of sections) {
+            const element = document.getElementById(section.id);
+            if (element) {
+                const offsetTop = element.offsetTop;
+                const offsetHeight = element.offsetHeight;
 
-                    if (scrollPosition >= offsetTop - 50 && scrollPosition < offsetTop + offsetHeight - 50) {
-                        setMenuActive(section.index);
-                        break;
-                    }
+                if (scrollPosition >= offsetTop - 50 && scrollPosition < offsetTop + offsetHeight - 50) {
+                    setMenuActive(section.index);
+                    break;
                 }
             }
-        }, 100),
-        []
-    );
+        }
+    }, []);
 
+    // Debounced Scroll
+    const debouncedHandleScroll = useMemo(() => debounce(handleScrollHandler, 100), [handleScrollHandler]);
+
+    // Scroll Event Binding
     useEffect(() => {
         const container = containerRef.current;
         if (container) {
-            container.addEventListener("scroll", handleScroll);
+            container.addEventListener("scroll", debouncedHandleScroll);
         }
         return () => {
             if (container) {
-                container.removeEventListener("scroll", handleScroll);
+                container.removeEventListener("scroll", debouncedHandleScroll);
             }
         };
-    }, [handleScroll]);
+    }, [debouncedHandleScroll]);
 
+    // Auto Scroll when menuActive changes
     useEffect(() => {
         if (!containerRef.current) return;
 
@@ -99,14 +106,13 @@ const Theme1 = () => {
         if (sectionId) {
             const section = document.getElementById(sectionId);
             if (section) {
-                isAutoScrolling.current = true; // Aktifkan flag auto scroll
+                isAutoScrolling.current = true;
                 containerRef.current.scrollTo({
                     top: section.offsetTop,
                     behavior: "smooth",
                 });
-
                 setTimeout(() => {
-                    isAutoScrolling.current = false; // Matikan flag setelah selesai scroll
+                    isAutoScrolling.current = false;
                 }, 500);
             }
         }
@@ -114,35 +120,37 @@ const Theme1 = () => {
 
     return (
         <>
-            {
-                openPayment ?
-                    <Payment payment={payment} setOpenPayment={setOpenPayment} /> :
-                    <>
-                        <Container ref={containerRef} color={dataThme?.color}>
-                            {
-                                menuActive === 4 ?
-                                    <Transaksi dataThme={dataThme} handelPayment={handelPayment} /> :
-
-                                    <>
-                                        <Header dataThme={dataThme} />
-                                        <Section id="promo-section">
-                                            <Promo dataThme={dataThme} />
-                                        </Section>
-                                        <Section id="categories">
-                                            <Categories dataThme={dataThme} />
-                                        </Section>
-                                        <Section id="product">
-                                            <Product setModalProduct={setModalProduct} />
-                                        </Section>
-                                        {
-                                            modalProduct && <ModalProduct />
-                                        }
-                                    </>
-                            }
-                        </Container>
-                        <Navbar dataThme={dataThme} menuActive={menuActive} setMenuActive={setMenuActive} setModalProduct={setModalProduct} />
-                    </>
-            }
+            {openPayment ? (
+                <Payment payment={payment} setOpenPayment={setOpenPayment} />
+            ) : (
+                <>
+                    <Container ref={containerRef} color={dataThme?.color}>
+                        {menuActive === 4 ? (
+                            <Transaksi dataThme={dataThme} handelPayment={handelPayment} />
+                        ) : (
+                            <>
+                                <Header dataThme={dataThme} />
+                                <Section id="promo-section">
+                                    <Promo dataThme={dataThme} />
+                                </Section>
+                                <Section id="categories">
+                                    <Categories dataThme={dataThme} />
+                                </Section>
+                                <Section id="product">
+                                    <Product setModalProduct={setModalProduct} />
+                                </Section>
+                                {modalProduct && <ModalProduct />}
+                            </>
+                        )}
+                    </Container>
+                    <Navbar
+                        dataThme={dataThme}
+                        menuActive={menuActive}
+                        setMenuActive={setMenuActive}
+                        setModalProduct={setModalProduct}
+                    />
+                </>
+            )}
         </>
     );
 };
