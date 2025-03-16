@@ -5,6 +5,7 @@ import Iconuser from './icon/user.svg';
 import Iconuserwhite from './icon/user-white.svg';
 import IconCircleArrow from './icon/circle-arrow.svg';
 import IconSearch from './icon/search.svg';
+import IconCopy from './icon/copy.svg';
 import IconCheckGreen from './icon/chcklist-green.svg';
 import Logo from './icon/logo.png';
 import PromoMakanan from './img/promo-makanan.webp'
@@ -18,5 +19,6 @@ export {
     IconCircleArrow,
     PromoMakanan,
     IconSearch,
-    IconCheckGreen
+    IconCheckGreen,
+    IconCopy
 }

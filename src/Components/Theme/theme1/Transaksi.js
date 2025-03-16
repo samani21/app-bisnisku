@@ -82,6 +82,7 @@ export const CardTransaksi = styled.div`
     align-items: start;
     gap: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    cursor: pointer;
 `;
 
 export const LogoBisnis = styled.img`

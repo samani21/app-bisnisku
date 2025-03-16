@@ -6,6 +6,7 @@ import Promo from "./components/Promo";
 import Navbar from "./components/Navbar";
 import Product from "./components/Product";
 import Transaksi from "./components/Transaksi";
+import Payment from "./components/Payment";
 
 const Container = styled.div`
     font-family: "Poppins", sans-serif;
@@ -33,9 +34,15 @@ const dataThme = {
 const Theme1 = () => {
     const [menuActive, setMenuActive] = useState(1);
     const containerRef = useRef(null);
-    const isAutoScrolling = useRef(false); // Flag untuk membedakan scroll manual & otomatis
+    const isAutoScrolling = useRef(false);
+    const [payment, setPayment] = useState();
+    const [openPayment, setOpenPayment] = useState(false);
 
-    // Fungsi debounce untuk mengurangi efek perubahan menu yang terlalu cepat
+    const handelPayment = (item) => {
+        setOpenPayment(true)
+        setPayment(item)
+    }
+
     const debounce = (func, delay) => {
         let timer;
         return (...args) => {
@@ -105,25 +112,31 @@ const Theme1 = () => {
 
     return (
         <>
-            <Container ref={containerRef} color={dataThme?.color}>
-                {
-                    menuActive === 4 ?
-                        <Transaksi dataThme={dataThme} /> :
-                        <>
-                            <Header dataThme={dataThme} />
-                            <Section id="promo-section">
-                                <Promo dataThme={dataThme} />
-                            </Section>
-                            <Section id="categories">
-                                <Categories dataThme={dataThme} />
-                            </Section>
-                            <Section id="product">
-                                <Product />
-                            </Section>
-                        </>
-                }
-            </Container>
-            <Navbar dataThme={dataThme} menuActive={menuActive} setMenuActive={setMenuActive} />
+            {
+                openPayment ?
+                    <Payment payment={payment} setOpenPayment={setOpenPayment} /> :
+                    <>
+                        <Container ref={containerRef} color={dataThme?.color}>
+                            {
+                                menuActive === 4 ?
+                                    <Transaksi dataThme={dataThme} handelPayment={handelPayment} /> :
+                                    <>
+                                        <Header dataThme={dataThme} />
+                                        <Section id="promo-section">
+                                            <Promo dataThme={dataThme} />
+                                        </Section>
+                                        <Section id="categories">
+                                            <Categories dataThme={dataThme} />
+                                        </Section>
+                                        <Section id="product">
+                                            <Product />
+                                        </Section>
+                                    </>
+                            }
+                        </Container>
+                        <Navbar dataThme={dataThme} menuActive={menuActive} setMenuActive={setMenuActive} />
+                    </>
+            }
         </>
     );
 };

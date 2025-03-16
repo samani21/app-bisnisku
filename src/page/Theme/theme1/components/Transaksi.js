@@ -4,116 +4,55 @@ import { IconSearch, Logo } from '../../../../assets'
 
 const history = [
     {
+        "kode_transaksi": "TRX-20250310-001",
         "nama_usaha": "Warung Sederhana",
         "tanggal": "2025-03-10",
         "total_pembayaran": 150000,
         "logo": Logo,
         "items": [
-            { "nama": "Nasi Goreng Spesial", "kategori": "Makanan", "harga": 35000, "qty": 2 },
-            { "nama": "Es Teh Manis", "kategori": "Minuman", "harga": 5000, "qty": 1 },
-            { "nama": "Paket Hemat Ayam Geprek", "kategori": "Paket Hemat & Menu Spesial", "harga": 30000, "qty": 1 }
+            { "nama": "Nasi Goreng Spesial", "kategori": "Makanan", "harga": 35000, "qty": 2, "ukuran": "Besar", "type": "Makanan Berat" },
+            { "nama": "Es Teh Manis", "kategori": "Minuman", "harga": 5000, "qty": 1, "ukuran": "Sedang", "type": "Dingin" },
+            { "nama": "Paket Hemat Ayam Geprek", "kategori": "Paket Hemat & Menu Spesial", "harga": 30000, "qty": 1, "ukuran": "Besar", "type": "Makanan Berat" }
         ]
     },
     {
+        "kode_transaksi": "TRX-20250311-002",
         "nama_usaha": "Kedai Kopi Mantap",
         "tanggal": "2025-03-11",
         "total_pembayaran": 85000,
         "logo": Logo,
         "items": [
-            { "nama": "Kopi Susu", "kategori": "Minuman", "harga": 25000, "qty": 1 },
-            { "nama": "Cheesecake", "kategori": "Dessert & Jajanan Manis", "harga": 30000, "qty": 1 },
-            { "nama": "Granola Bowl", "kategori": "Makanan Sehat", "harga": 30000, "qty": 1 }
+            { "nama": "Kopi Susu", "kategori": "Minuman", "harga": 25000, "qty": 1, "ukuran": "Sedang", "type": "Kopi" },
+            { "nama": "Cheesecake", "kategori": "Dessert & Jajanan Manis", "harga": 30000, "qty": 1, "ukuran": "Kecil", "type": "Manis" },
+            { "nama": "Granola Bowl", "kategori": "Makanan Sehat", "harga": 30000, "qty": 1, "ukuran": "Sedang", "type": "Sehat" }
         ]
     },
     {
-        "nama_usaha": "Ayam Bakar Pak Slamet",
-        "tanggal": "2025-03-12",
-        "total_pembayaran": 120000,
-        "logo": Logo,
-        "items": [
-            { "nama": "Ayam Bakar Komplit", "kategori": "Makanan", "harga": 50000, "qty": 1 },
-            { "nama": "Jus Alpukat", "kategori": "Minuman", "harga": 20000, "qty": 2 },
-            { "nama": "Paket Hemat Ayam Penyet", "kategori": "Paket Hemat & Menu Spesial", "harga": 50000, "qty": 1 }
-        ]
-    },
-    {
-        "nama_usaha": "Resto Vegan Happy",
-        "tanggal": "2025-03-13",
-        "total_pembayaran": 95000,
-        "logo": Logo,
-        "items": [
-            { "nama": "Salad Buah Segar", "kategori": "Makanan Sehat", "harga": 40000, "qty": 1 },
-            { "nama": "Smoothie Bowl", "kategori": "Makanan Sehat", "harga": 35000, "qty": 1 },
-            { "nama": "Green Juice", "kategori": "Minuman", "harga": 20000, "qty": 1 }
-        ]
-    },
-    {
-        "nama_usaha": "Bakso Malang Pak Joko",
-        "tanggal": "2025-03-14",
-        "total_pembayaran": 110000,
-        "logo": Logo,
-        "items": [
-            { "nama": "Bakso Campur", "kategori": "Makanan", "harga": 40000, "qty": 2 },
-            { "nama": "Es Jeruk", "kategori": "Minuman", "harga": 10000, "qty": 1 },
-            { "nama": "Paket Hemat Bakso Urat", "kategori": "Paket Hemat & Menu Spesial", "harga": 60000, "qty": 1 }
-        ]
-    },
-    {
+        "kode_transaksi": "TRX-20250312-003",
         "nama_usaha": "Roti & Kue Enak",
-        "tanggal": "2025-03-15",
+        "tanggal": "2025-03-12",
         "total_pembayaran": 75000,
         "logo": Logo,
         "items": [
-            { "nama": "Tiramisu Cake", "kategori": "Dessert & Jajanan Manis", "harga": 40000, "qty": 1 },
-            { "nama": "Kopi Hitam", "kategori": "Minuman", "harga": 15000, "qty": 1 },
-            { "nama": "Donat Coklat", "kategori": "Dessert & Jajanan Manis", "harga": 20000, "qty": 1 }
+            { "nama": "Tiramisu Cake", "kategori": "Dessert & Jajanan Manis", "harga": 40000, "qty": 1, "ukuran": "Sedang", "type": "Manis" },
+            { "nama": "Kopi Hitam", "kategori": "Minuman", "harga": 15000, "qty": 1, "ukuran": "Kecil", "type": "Kopi" },
+            { "nama": "Donat Coklat", "kategori": "Dessert & Jajanan Manis", "harga": 20000, "qty": 1, "ukuran": "Kecil", "type": "Manis" }
         ]
     },
     {
-        "nama_usaha": "Soto Ayam Cak Man",
-        "tanggal": "2025-03-16",
-        "total_pembayaran": 130000,
-        "logo": Logo,
-        "items": [
-            { "nama": "Soto Ayam", "kategori": "Makanan", "harga": 40000, "qty": 2 },
-            { "nama": "Es Kelapa", "kategori": "Minuman", "harga": 20000, "qty": 1 },
-            { "nama": "Paket Hemat Soto & Tempe Goreng", "kategori": "Paket Hemat & Menu Spesial", "harga": 70000, "qty": 1 }
-        ]
-    },
-    {
-        "nama_usaha": "Kopi Senja",
-        "tanggal": "2025-03-17",
-        "total_pembayaran": 95000,
-        "logo": Logo,
-        "items": [
-            { "nama": "Cappuccino", "kategori": "Minuman", "harga": 35000, "qty": 1 },
-            { "nama": "Brownies Coklat", "kategori": "Dessert & Jajanan Manis", "harga": 30000, "qty": 2 },
-            { "nama": "Smoothie Mangga", "kategori": "Minuman", "harga": 30000, "qty": 1 }
-        ]
-    },
-    {
-        "nama_usaha": "Bubur Ayam Mang Ujang",
-        "tanggal": "2025-03-18",
-        "total_pembayaran": 65000,
-        "logo": Logo,
-        "items": [
-            { "nama": "Bubur Ayam Komplit", "kategori": "Makanan", "harga": 35000, "qty": 1 },
-            { "nama": "Teh Tarik", "kategori": "Minuman", "harga": 15000, "qty": 2 },
-            { "nama": "Pisang Goreng Madu", "kategori": "Dessert & Jajanan Manis", "harga": 15000, "qty": 1 }
-        ]
-    },
-    {
+        "kode_transaksi": "TRX-20250313-004",
         "nama_usaha": "Healthy Bites",
-        "tanggal": "2025-03-19",
+        "tanggal": "2025-03-13",
         "total_pembayaran": 120000,
         "logo": Logo,
         "items": [
-            { "nama": "Quinoa Salad", "kategori": "Makanan Sehat", "harga": 50000, "qty": 1 },
-            { "nama": "Jus Detox Hijau", "kategori": "Minuman", "harga": 25000, "qty": 1 },
-            { "nama": "Oatmeal Bowl", "kategori": "Makanan Sehat", "harga": 45000, "qty": 1 }
+            { "nama": "Quinoa Salad", "kategori": "Makanan Sehat", "harga": 50000, "qty": 1, "ukuran": "Sedang", "type": "Sehat" },
+            { "nama": "Jus Detox Hijau", "kategori": "Minuman", "harga": 25000, "qty": 1, "ukuran": "Sedang", "type": "Dingin" },
+            { "nama": "Oatmeal Bowl", "kategori": "Makanan Sehat", "harga": 45000, "qty": 1, "ukuran": "Sedang", "type": "Sehat" }
         ]
     }
-]
+];
+
 
 const menus = [
     'Riwayat',
@@ -121,7 +60,7 @@ const menus = [
 ]
 
 const Transaksi = (props) => {
-    const { dataThme } = props;
+    const { dataThme, handelPayment } = props;
     const [menuActive, setMenuActive] = useState("Riwayat")
     const formatRupiah = (number) => {
         return new Intl.NumberFormat("id-ID", {
@@ -169,7 +108,7 @@ const Transaksi = (props) => {
             <ListContent>
                 {
                     history?.map((h, i) => (
-                        <CardTransaksi>
+                        <CardTransaksi key={i} onClick={() => handelPayment(h)}>
                             <LogoBisnis src={h?.logo} />
                             <Details>
                                 <Tanggal>
